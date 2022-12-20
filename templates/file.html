@@ -1,0 +1,129 @@
+<html>
+<head>
+    <title>Bug Pilot</title>
+    <style>
+        body {
+            background-color: #f5f5dc;
+            text-align: center;
+            font-family: "Courier New";
+        }
+
+        h1 {
+            color: #444444;
+            margin-bottom: 30px;
+        }
+
+        input[type="file"] {
+            font-family: "Courier New";
+            padding: 10px;
+            border: 2px solid #444444;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        button {
+            background-color: black; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+
+    </style>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+            integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    ></script>
+
+
+</head>
+<body>
+<h1>Bug Pilot</h1>
+<p>Welcome to Bug Pilot!</p>
+
+<p>
+    Search for various API Key exposed in your code:
+</p>
+<div style="width: 30%; text-align: center; margin: 0 auto">
+
+    <ul>
+        <li>google_api</li>
+        <li>google_captcha</li>
+        <li>google_oauth</li>
+        <li>amazon_aws_access_key_id</li>
+        <li>amazon_mws_auth_toke</li>
+        <li>amazon_aws_url</li>
+        <li>facebook_access_token</li>
+        <li>authorization_basic</li>
+        <li>authorization_bearer</li>
+        <li>authorization_api</li>
+        <li>mailgun_api_key</li>
+        <li>twilio_api_key</li>
+        <li>twilio_account_sid</li>
+        <li>twilio_app_sid</li>
+        <li>paypal_braintree_access_token</li>
+        <li>square_oauth_secret</li>
+        <li>square_access_token</li>
+        <li>stripe_standard_api</li>
+        <li>stripe_restricted_api</li>
+        <li>github_access_token</li>
+        <li>rsa_private_key</li>
+        <li>ssh_dsa_private_key</li>
+        <li>ssh_dc_private_key</li>
+        <li>pgp_private_block</li>
+        <li>json_web_token</li>
+    </ul>
+</div>
+<p>Use the upload button below to upload a zip file:</p>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" accept=".zip" name="zip_file"/>
+    <button type="submit">Submit</button>
+</form>
+
+{% if output %}
+    <div id="#table">
+        <h1> Vulnerabilities found in code are given as follows</h1>
+        <h3> No. of Vulnerabilities : {{ size }}</h3>
+
+        <h3>Details where vulnerabilities are present</h3>
+        <table style="text-align: center; margin: 0 auto;">
+            <tr>
+                <th width="100">File Path</th>
+                <th width="100">Line Number</th>
+                <th width="100">API KEY Type</th>
+                <th width="200">Value</th>
+            </tr>
+
+            {% for out in output %}
+                <tr>
+                    <td>{{ out.file_path }}</td>
+                    <td>{{ out.line_no }}</td>
+                    <td>{{ out.key_type }}</td>
+                    <td>{{ out.value }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <button onclick=" generatePDF()">Download PDF</button>
+{% endif %}
+<script>
+    function generatePDF() {
+        window.print();
+    }
+</script>
+</body>
+</html>

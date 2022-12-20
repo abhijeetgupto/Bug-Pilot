@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title>Bug Pilot</title>
+    <style>
+
+
+        body {
+            background-color: #f5f5dc;
+            text-align: center;
+            font-family: "Courier New";
+        }
+
+        h1 {
+            color: #444444;
+            margin-bottom: 30px;
+        }
+        button {
+            font-family: "Courier New";
+            background-color: black; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 5px #fff;
+            transition: box-shadow 0.5s;
+        }
+        button:hover {
+            background-color: #555;
+            box-shadow: 0 0 20px #fff; /* stronger white glow */
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+<h1>Bug Pilot</h1>
+<p><b>Welcome to Bug Pilot!</b></p>
+
+<br>
+<br>
+<br>
+
+<p><b>Use one of the following options to find the vulnerabilities:</b></p>
+<br>
+<form method="post">
+    {% csrf_token %}
+    <div>To check in a zip file<br> <button type="submit" name="zip_file">Zip File</button></div>
+    <div>To check in a GitHub Repository <br><button type="submit" name="github">GitHub Repository</button><br></div>
+    <div>To check in a deployed website <br><button type="submit" name="link">Link</button><br></div>
+
+</form>
+<p>
+    Right now we can detect the following API leaks:
+</p>
+<div style="width: 30%; text-align: center; margin: 0 auto">
+
+    <ul>
+        <li>google_api</li>
+        <li>google_captcha</li>
+        <li>google_oauth</li>
+        <li>amazon_aws_access_key_id</li>
+        <li>amazon_mws_auth_toke</li>
+        <li>amazon_aws_url</li>
+        <li>facebook_access_token</li>
+        <li>authorization_basic</li>
+        <li>authorization_bearer</li>
+        <li>authorization_api</li>
+        <li>mailgun_api_key</li>
+        <li>twilio_api_key</li>
+        <li>twilio_account_sid</li>
+        <li>twilio_app_sid</li>
+        <li>paypal_braintree_access_token</li>
+        <li>square_oauth_secret</li>
+        <li>square_access_token</li>
+        <li>stripe_standard_api</li>
+        <li>stripe_restricted_api</li>
+        <li>github_access_token</li>
+        <li>rsa_private_key</li>
+        <li>ssh_dsa_private_key</li>
+        <li>ssh_dc_private_key</li>
+        <li>pgp_private_block</li>
+        <li>json_web_token</li>
+    </ul>
+</div>
+
+
+
+</body>
+</html>
