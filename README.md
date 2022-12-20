@@ -38,7 +38,7 @@ You can check for vulnerabilitie either by directly uploading the zip file of yo
 
 
 
-After the programme looks at the code, it can tell the path and line number in the file where a possible security flaw is found and also genrate a pdf of the same.
+After the application looks at the code, it can tell the path and line number in the file where a possible security flaw is found and also genrate a pdf of the same.
 
 ![image](https://user-images.githubusercontent.com/53190754/208698730-d572845e-a580-468d-916a-d2485b65775f.png)
 
